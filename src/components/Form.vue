@@ -60,7 +60,12 @@
       <hr/>
       <ul class="list" v-if="notes.length !== 0">
         <li class="list-item" v-for="(myNote, idx) in notes">
-          {{ idx + 1 }}. {{ toUpperCase(myNote) }}
+          <!-- <span :class="myNote.length < 3 ? 'primary' : 'bold'">{{ idx + 1 }}. {{ toUpperCase(myNote) }}</span> -->
+          <!-- <span :class="{
+            'primary': true,
+            'bold': myNote.length > 3
+          }">{{ idx + 1 }}. {{ toUpperCase(myNote) }}</span> -->
+          <span :class="['primary', {'bold': myNote.length > 3}]">{{ idx + 1 }}. {{ toUpperCase(myNote) }}</span>
           <button class="btn danger" v-on:click="removeNote(idx)">delete</button>
         </li>
         <hr/>
