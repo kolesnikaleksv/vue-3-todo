@@ -12,7 +12,7 @@
     inputChangeHanler(e) {
       this.inputValue = e.target.value
     },
-    addNewNote() {console.log('hello')
+    addNewNote() {
       if(this.inputValue !== '') {
         this.notes.push(this.inputValue)
         this.inputValue = ''
@@ -28,8 +28,15 @@
   },
   computed: {
     doubleCount() {
-      console.log('doubleCount');
       return this.notes.length * 2;
+    }
+  },
+  watch: {
+    inputValue(value) {
+      if(value.length >= 10) {
+        this.inputValue = ''
+      }
+      console.log(`input value watch: ${value}`)
     }
   }
 }
@@ -62,7 +69,6 @@
         </li>
       </ul>
       <div v-else>There are no notes, create first one</div>
-      
     </div>
   </div>
 </template>
