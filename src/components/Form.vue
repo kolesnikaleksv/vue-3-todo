@@ -9,9 +9,6 @@
     }
   },
   methods: {
-    inputChangeHanler(e) {
-      this.inputValue = e.target.value
-    },
     addNewNote() {
       if(this.inputValue !== '') {
         this.notes.push(this.inputValue)
@@ -50,8 +47,7 @@
         <input 
           type="text" 
           :placeholder="placeholderString"
-          :value="inputValue"
-          @input="inputChangeHanler"
+          v-model="inputValue"
           @keypress.enter="addNewNote"
           >
       </div>
