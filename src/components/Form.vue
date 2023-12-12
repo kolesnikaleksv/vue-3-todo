@@ -42,7 +42,12 @@
 <template>
   <div class="container pt-5">
     <div class="card">
-      <h1>{{ title }}</h1>
+      <!-- <h1 style="color: green">{{ title }}</h1> -->
+      <!-- <h1 :style="{color: 'green'}">{{ title }}</h1> -->
+      <h1 :style="{
+        color: inputValue.length < 5 ? 'green': 'red',
+        fontSize: inputValue.length < 6 ? '1.5rem' : '2rem'
+      }">{{ title }}</h1>
       <div class="form-control">
         <input 
           type="text" 
