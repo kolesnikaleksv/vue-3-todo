@@ -12,12 +12,24 @@
     inputChangeHanler(e) {
       this.inputValue = e.target.value
     },
-    addNewNote() {
-      this.notes.push(this.inputValue)
-      this.inputValue = ''
+    addNewNote() {console.log('hello')
+      if(this.inputValue !== '') {
+        this.notes.push(this.inputValue)
+        this.inputValue = ''
+      }
     },
+    toUpperCase(item) {
+      return item.toUpperCase()
+    },
+   
     removeNote(idx) {
       this.notes.splice(idx,1);
+    }
+  },
+  computed: {
+    doubleCount() {
+      console.log('doubleCount');
+      return this.notes.length * 2;
     }
   }
 }
@@ -32,19 +44,25 @@
           type="text" 
           :placeholder="placeholderString"
           :value="inputValue"
-          v-on:input="inputChangeHanler"
-          v-on:keypress.enter="addNewNote"
+          @input="inputChangeHanler"
+          @keypress.enter="addNewNote"
           >
       </div>
-      <button class="btn pimary" @click="addNewNote">Add note</button>
+      <button class="btn pimary" v-on:click="addNewNote">Add note</button>
       <hr/>
       <ul class="list" v-if="notes.length !== 0">
         <li class="list-item" v-for="(myNote, idx) in notes">
-          {{ myNote }}
+          {{ idx + 1 }}. {{ toUpperCase(myNote) }}
           <button class="btn danger" v-on:click="removeNote(idx)">delete</button>
         </li>
+        <hr/>
+        <li>
+          notes count {{ notes.length }} 
+          <strong>| double: {{ doubleCount }}</strong>
+        </li>
       </ul>
-      <div v-if="notes.length === 0">There are no notes, create first one</div>
+      <div v-else>There are no notes, create first one</div>
+      
     </div>
   </div>
 </template>
