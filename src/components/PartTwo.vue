@@ -3,7 +3,13 @@
   data() {
     return {
       title: 'Part Two',
-      myHtml: '<h1>My Html</h1>'
+      myHtml: '<h1>My Html</h1>',
+      person: {
+        name: 'Olex',
+        age: '25',
+        wife: 'Lyubov'
+      },
+      items: [1, 2, 3, 4, 5, 6]
     }
   },
   methods: {
@@ -20,6 +26,13 @@
       <h2 v-once>{{ title }}</h2> <!-- v-once - work only once, you can't change that title -->
       <h2 v-pre>{{ title }}</h2> <!-- v-pre - for debagging -->
       <button class="btn" @click="this.title = 'Changed title'">Change titile</button>
+      <ul class="list">
+        <!-- <li class="list-item" v-for="item in 7">{{ item }}</li> we can work with loop without array at all -->
+        <!-- <li class="list-item" v-for="item in person">{{ item }}</li>  we can work with obj -->
+      <li class="list-item" v-for="item in items">
+        <strong>{{ item }}</strong>
+      </li> 
+      </ul>
     </div>
   </div>
 </template>
